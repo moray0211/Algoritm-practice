@@ -13,7 +13,7 @@ vector<bool> visited;
 int result = 0;
 
 bool first = true;
-void BFS(int here) {
+void DFS(int here) {
 
 	if (visited[here]) return;
 	visited[here] = true;
@@ -23,7 +23,7 @@ void BFS(int here) {
 
 	for (int i = 0; i < line[here].size(); i++) {
 		int next = line[here][i];
-		if (!visited[next]) BFS(next);
+		if (!visited[next]) DFS(next);
 		else {
 			if (first) {
 				result++;
@@ -48,7 +48,7 @@ int main() {
 	}
 
 	for (int i = 1; i <= N; i++) {
-		BFS(i);
+		DFS(i);
 		first = true;
 	}
 
