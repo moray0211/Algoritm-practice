@@ -16,6 +16,7 @@ int main() {
 	for (int i = 0; i < str.length(); i++) {
 		string tmp = str.substr(i, 1);
 
+		//({})일 경우 체크
 		if (tmp != "(" && tmp != ")" && tmp != "[" && tmp != "]") {
 			cout << 0;
 			return 0;
@@ -23,6 +24,7 @@ int main() {
 
 		if (tmp == "(") s.push(-2);
 		if (tmp == "[") s.push(-3);
+		//)앞엔 [가, ]앞엔 (가 오지 못할것을 확실히 하기
 		if (tmp == ")") {
 			if (s.empty() || s.top() == -3) { cout << 0; return 0; }
 			int num = s.top();
@@ -31,7 +33,7 @@ int main() {
 				s.push(2);
 			}
 			else {
-				//(�� ã�� �� ����
+				//(를 찾을 때 까지
 				while (num != -2) {
 					if (num == -3 || s.empty()) {
 						cout << 0;
@@ -42,7 +44,7 @@ int main() {
 					if (s.empty()) { cout << 0; return 0; }
 					num = s.top();
 				}
-				//ã�Ҵٸ�
+				//찾았다면
 				s.pop();
 				int tmp_num = 0;
 				while (!tmp_s.empty()) {
@@ -64,14 +66,14 @@ int main() {
 				s.push(3);
 			}
 			else {
-				//[�� ã�� �� ����
+				//[를 찾을 때 까지
 				while (num != -3) {
 					tmp_s.push(num * 3);
 					s.pop();
 					if (s.empty()) { cout << 0; return 0; }
 					num = s.top();
 				}
-				//ã�Ҵٸ�
+				//찾았다면
 				s.pop();
 				int tmp_num = 0;
 				while (!tmp_s.empty()) {
